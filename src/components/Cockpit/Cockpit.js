@@ -1,12 +1,12 @@
-import React from 'react';
-import classes from './Cockpit.css'
+import React from "react";
+import classes from "./Cockpit.css";
 
-const cockpit = ( props ) => {
+const cockpit = props => {
   const assingedClasses = [];
-  let btnClass = '';
+  let btnClass = classes.Button;
 
   if (props.showPersons) {
-    btnClass = classes.Red;
+    btnClass = [classes.Button, classes.Red].join(" ");
   }
 
   if (props.persons.length <= 2) {
@@ -17,16 +17,14 @@ const cockpit = ( props ) => {
   }
 
   return (
-    <div className={classes.Cockpit}>
+    <>
       <h1>{props.appTitle}</h1>
-      <p className={assingedClasses.join(' ')}>This is really working</p>
-      <button 
-        className={btnClass}
-        onClick={props.clicked}>
+      <p className={assingedClasses.join(" ")}>This is really working</p>
+      <button className={btnClass} onClick={props.clicked}>
         Toggle Persons
       </button>
-    </div>
-    
+      <button onClick={props.login}>Log In</button>
+    </>
   );
-}
-export default cockpit;
+};
+export default React.memo(cockpit);
